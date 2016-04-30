@@ -4,7 +4,7 @@
 #
 Name     : smartmontools
 Version  : 6.4
-Release  : 3
+Release  : 4
 URL      : http://downloads.sourceforge.net/project/smartmontools/smartmontools/6.4/smartmontools-6.4.tar.gz
 Source0  : http://downloads.sourceforge.net/project/smartmontools/smartmontools/6.4/smartmontools-6.4.tar.gz
 Summary  : No detailed summary available
