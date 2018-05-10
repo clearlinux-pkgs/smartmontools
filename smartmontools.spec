@@ -6,7 +6,7 @@
 #
 Name     : smartmontools
 Version  : 6.6
-Release  : 8
+Release  : 9
 URL      : https://sourceforge.net/projects/smartmontools/files/smartmontools/6.6/smartmontools-6.6.tar.gz
 Source0  : https://sourceforge.net/projects/smartmontools/files/smartmontools/6.6/smartmontools-6.6.tar.gz
 Source99 : https://sourceforge.net/projects/smartmontools/files/smartmontools/6.6/smartmontools-6.6.tar.gz.asc
