@@ -1,33 +1,6 @@
 Configure miss: whether this is a build from SVN
-Configure miss: dev/ata/atavar.h usability
-Configure miss: dev/ata/atavar.h presence
-Configure miss: dev/ata/atavar.h
-Configure miss: sys/inttypes.h usability
-Configure miss: sys/inttypes.h presence
-Configure miss: sys/inttypes.h
-Configure miss: sys/int_types.h usability
-Configure miss: sys/int_types.h presence
-Configure miss: sys/int_types.h
-Configure miss: sys/tweio.h usability
-Configure miss: sys/tweio.h presence
-Configure miss: sys/tweio.h
-Configure miss: sys/twereg.h usability
-Configure miss: sys/twereg.h presence
-Configure miss: sys/twereg.h
-Configure miss: sys/tw_osl_ioctl.h usability
-Configure miss: sys/tw_osl_ioctl.h presence
-Configure miss: sys/tw_osl_ioctl.h
 Configure miss: linux/compiler.h usability
 Configure miss: linux/compiler.h presence
 Configure miss: linux/compiler.h
-Configure miss: dev/ciss/cissio.h usability
-Configure miss: dev/ciss/cissio.h presence
-Configure miss: dev/ciss/cissio.h
-Configure miss: ntdddisk.h
-Configure miss: ddk/ntdddisk.h
-Configure miss: wbemcli.h usability
-Configure miss: wbemcli.h presence
-Configure miss: wbemcli.h
-Configure miss: systemdsystemunitdir
-Configure miss: init (rc) directory
+Configure miss: path of systemd EnvironmentFile
 Configure miss: g++ option to accept C++11

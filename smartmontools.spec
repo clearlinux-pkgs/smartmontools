@@ -5,18 +5,21 @@
 # Source0 file verified with key 0x18ECDA46CBF6BAC6 (smartmontools-support@listi.jpberlin.de)
 #
 Name     : smartmontools
-Version  : 6.6
-Release  : 9
-URL      : https://sourceforge.net/projects/smartmontools/files/smartmontools/6.6/smartmontools-6.6.tar.gz
-Source0  : https://sourceforge.net/projects/smartmontools/files/smartmontools/6.6/smartmontools-6.6.tar.gz
-Source99 : https://sourceforge.net/projects/smartmontools/files/smartmontools/6.6/smartmontools-6.6.tar.gz.asc
+Version  : 7.0
+Release  : 10
+URL      : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.0/smartmontools-7.0.tar.gz
+Source0  : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.0/smartmontools-7.0.tar.gz
+Source99 : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.0/smartmontools-7.0.tar.gz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: smartmontools-bin
-Requires: smartmontools-doc
-Requires: smartmontools-data
+Requires: smartmontools-bin = %{version}-%{release}
+Requires: smartmontools-data = %{version}-%{release}
+Requires: smartmontools-license = %{version}-%{release}
+Requires: smartmontools-man = %{version}-%{release}
+Requires: smartmontools-services = %{version}-%{release}
 BuildRequires : libcap-ng-dev
+BuildRequires : systemd-dev
 
 %description
 ==========================================================
@@ -27,7 +30,10 @@ OSX, FreeBSD, Linux, NetBSD, OpenBSD, Solaris, and Windows.
 %package bin
 Summary: bin components for the smartmontools package.
 Group: Binaries
-Requires: smartmontools-data
+Requires: smartmontools-data = %{version}-%{release}
+Requires: smartmontools-license = %{version}-%{release}
+Requires: smartmontools-man = %{version}-%{release}
+Requires: smartmontools-services = %{version}-%{release}
 
 %description bin
 bin components for the smartmontools package.
@@ -44,22 +50,47 @@ data components for the smartmontools package.
 %package doc
 Summary: doc components for the smartmontools package.
 Group: Documentation
+Requires: smartmontools-man = %{version}-%{release}
 
 %description doc
 doc components for the smartmontools package.
 
 
+%package license
+Summary: license components for the smartmontools package.
+Group: Default
+
+%description license
+license components for the smartmontools package.
+
+
+%package man
+Summary: man components for the smartmontools package.
+Group: Default
+
+%description man
+man components for the smartmontools package.
+
+
+%package services
+Summary: services components for the smartmontools package.
+Group: Systemd services
+
+%description services
+services components for the smartmontools package.
+
+
 %prep
-%setup -q -n smartmontools-6.6
+%setup -q -n smartmontools-7.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1510236617
+export SOURCE_DATE_EPOCH=1546195887
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -69,8 +100,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1510236617
+export SOURCE_DATE_EPOCH=1546195887
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/smartmontools
+cp COPYING %{buildroot}/usr/share/package-licenses/smartmontools/COPYING
 %make_install
 
 %files
@@ -87,7 +120,20 @@ rm -rf %{buildroot}
 /usr/share/smartmontools/drivedb.h
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/doc/smartmontools/*
-%doc /usr/share/man/man5/*
-%doc /usr/share/man/man8/*
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/smartmontools/COPYING
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man5/smartd.conf.5
+/usr/share/man/man8/smartctl.8
+/usr/share/man/man8/smartd.8
+/usr/share/man/man8/update-smart-drivedb.8
+
+%files services
+%defattr(-,root,root,-)
+/usr/lib/systemd/system/smartd.service
