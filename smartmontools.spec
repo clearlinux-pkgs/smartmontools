@@ -6,7 +6,7 @@
 #
 Name     : smartmontools
 Version  : 7.0
-Release  : 10
+Release  : 11
 URL      : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.0/smartmontools-7.0.tar.gz
 Source0  : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.0/smartmontools-7.0.tar.gz
 Source99 : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.0/smartmontools-7.0.tar.gz.asc
