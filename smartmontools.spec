@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xBF0B339C64BCAA8B (smartmontools-support@listi.jpberlin.de)
 #
 Name     : smartmontools
-Version  : 7.1
-Release  : 12
-URL      : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.1/smartmontools-7.1.tar.gz
-Source0  : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.1/smartmontools-7.1.tar.gz
-Source1  : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.1/smartmontools-7.1.tar.gz.asc
-Summary  : Control and monitor S.M.A.R.T. enabled ATA and SCSI Hard Drives
+Version  : 7.2
+Release  : 13
+URL      : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.2/smartmontools-7.2.tar.gz
+Source0  : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.2/smartmontools-7.2.tar.gz
+Source1  : https://sourceforge.net/projects/smartmontools/files/smartmontools/7.2/smartmontools-7.2.tar.gz.asc
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0
 Requires: smartmontools-bin = %{version}-%{release}
@@ -22,32 +22,10 @@ BuildRequires : libcap-ng-dev
 BuildRequires : systemd-dev
 
 %description
-<html>
-<body>
-<h2>About this package</h2>
-The smartmontools package contains two utility programs (smartctl and smartd) to control
-and monitor storage systems using the Self-Monitoring, Analysis and Reporting
-Technology System (SMART) built into most modern ATA and SCSI harddisks.
-In many cases, these utilities will provide advanced warning of disk degradation and failure.
-<h2>Installing</h2>
-To install package click on the smartmontools.pkg icon and follow installation process. Files will be installed to the <b>/usr/local/</b> directory.
-<h2>Usage</h2>
-If you are having trouble understanding the output of smartctl or smartd, please first read the manual pages installed on your system:
-<pre>
-man 8 smartctl
-man 8 smartd
-man 8 update-smart-drivedb
-man 5 smartd.conf
-</pre>
-To use smartmontools with USB drives please download and install
-<a href="https://github.com/kasbert/OS-X-SAT-SMART-Driver">Max OS X kernel driver for providing access to external drive SMART data</a>. SAT SMART Driver is a free open source project (published under Apple Public Source License) by Jarkko Sonninen.
-If you are using OS X El Capitan 10.11+ it is recommended to use signed version available from <a href="http://binaryfruit.com/drivedx/usb-drive-support/">DriveDx web site</a>.
-<p>
-More information could be found on the <a href="https://www.smartmontools.org">www.smartmontools.org</a> website.
-<h2>Uninstalling</h2>
-If you want to uninstall already installed package run <tt>'sudo smart-pkg-uninstall'</tt> in the terminal.
-</body>
-</html>
+==========================================================
+smartmontools - S.M.A.R.T. utility toolset for Darwin/Mac
+OSX, FreeBSD, Linux, NetBSD, OpenBSD, Solaris, and Windows.
+==========================================================
 
 %package bin
 Summary: bin components for the smartmontools package.
@@ -102,23 +80,22 @@ services components for the smartmontools package.
 
 
 %prep
-%setup -q -n smartmontools-7.1
-cd %{_builddir}/smartmontools-7.1
+%setup -q -n smartmontools-7.2
+cd %{_builddir}/smartmontools-7.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1578332342
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1609884244
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -128,13 +105,13 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1578332342
+export SOURCE_DATE_EPOCH=1609884244
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/smartmontools
-cp %{_builddir}/smartmontools-7.1/COPYING %{buildroot}/usr/share/package-licenses/smartmontools/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/smartmontools-7.2/COPYING %{buildroot}/usr/share/package-licenses/smartmontools/4cc77b90af91e615a64ae04893fdffa7939db84c
 %make_install
 
 %files
