@@ -1,9 +1,89 @@
 smartmontools NEWS
 ------------------
-$Id: NEWS 5338 2022-02-28 16:34:26Z chrfranke $
+$Id: NEWS 5530 2023-08-01 11:00:21Z chrfranke $
 
 The most up-to-date version of this file is:
 https://www.smartmontools.org/browser/trunk/smartmontools/NEWS
+
+Date 2023-08-01
+Summary: smartmontools release 7.4
+-----------------------------------------------------------
+- The docker image used for CI and release builds is now based on
+  Debian 12 instead of Ubuntu 18.04.
+- macOS: CI and release builds are now generated for the x86_64 and arm64
+  targets. 32 bit platforms will require to be compiled from the source.
+- smartctl '-t short', '-t long' and '-X': NVMe support.
+- smartctl '-l selftest': NVMe support.
+- smartctl '-l farm': Prints Seagate's vendor-specific Field Access
+  Reliability Metrics (FARM) log for ATA and SCSI drives.
+- smartctl '-l error': Now also prints an error message for each entry
+  of NVMe error information log.
+- smartctl '-l genstats': Prints SCSI General statistics and performance
+  log page.
+- smartctl '-i' and '--identify': ACS-4/5/6 enhancements.
+- smartctl '-c': Added NVMe 2.0 capability flags.
+- smartctl '-g security': Added 'ata_security.master_password_id'
+  to JSON output.  Plaintext output shows Master Password ID if set
+  to a non-default value.
+- smartctl '-q noserial': Now also suppresses the output of NVMe Namespace
+  IEEE EUI-64.
+- smartctl '-j': '-l error -l selftest' JSON output for NVMe devices.
+- smartctl '-j': Avoid invalid UTF-8 sequences in JSON/YAML strings.
+- smartctl '-j': Fixed a bogus exception during SCSI JSON output.
+- smartctl '-j': Renamed JSON element 'scsi_temperature' back to
+  'temperature' (regression).
+- smartctl '-a': Now suggests '-x' for ATA devices because '-a' only
+  provides legacy SMART information.
+- smartd: No longer issues LOG_CRIT warnings if new entries of NVMe error
+  information log do not indicate device problems.
+- smartd: Now detects accidental use of smartd_warning script as
+  '-M exec' parameter.
+- smartd: No longer writes the 'Copyright...' line to syslog.
+- smartd.conf '-M always': Sends reminder emails without any delay.
+- smartd.conf '-M diminishing': Limited email delay to 32 days.
+- ATA: Fixed decoding of extended self-test log on big endian hosts.
+- ATA: Enhanced LBA range for device types '-d jmb39x-q,...' and
+  '-d jms56x,...' from 33-62 to 1-255.
+- ATA: Device type '-d intelliprop,N' now fails with a deprecation message.
+  Added '-d intelliprop,N,force' flag to use it anyway.
+- ATA/USB: Device type '-d usbasm1352r,N' for ASMedia ASM1352R USB to SATA
+  RAID bridges
+- SCSI: Fixed possible corruption issue with the Error Counter and
+  Non medium Error log pages.
+- SCSI: Added more "Informational Exceptions" strings.
+- SCSI: Added initial support for REPORT SUPPORTED OPERATION command.
+- SCSI: Initial rework of SCSI debug output.
+- NVMe: Added error messages for NVMe status values.
+- NVMe: Fixed crash after read of error information log on big endian hosts.
+- HDD, SSD and USB additions to drive database.
+- update-smart-drivedb: Fixed syntax for 'sed' versions which require
+  ';' before '}' or do not support ';' at all.
+- update-smart-drivedb: Replaced a usually not executed bashism.
+- configure: Default for '--with-nvme-devicescan' is now 'yes' also on
+  Darwin and FreeBSD.  It is still 'no' on NetBSD only.
+- configure: Defines '_FORTIFY_SOURCE=3' if supported and not predefined.
+- configure: No longer fails if libsystemd-dev is installed and
+  'LDFLAGS=-static' is used.
+- Compile fix for systems without legacy 'getdtablesize()'.
+- Pre-releases from SVN snapshots now show "pre-VERSION" in version
+  information and 'smartctl.pre_release=true' in JSON output.
+- Linux: Device type '-d sssraid' for 3SNIC RAID controllers.
+- Linux: Device type '-d marvell' now fails with a deprecation message.
+  Added '-d marvell,force' flag to use it anyway.
+- Linux: The generic SCSI code now defaults to SG_IO_V3 and does no
+  longer fall back to the deprecated SCSI_IOCTL_SEND_COMMAND
+  (but this ioctl is still used for '-d 3ware' and '-d marvell,force').
+- Linux smartd: Now prevents systemd unit startup timeout when many
+  devices are registered and then initially checked.
+- Linux smartd: Systemd no longer reports a service failure if no device
+  is present and a '-q *nodev0*' option is used.
+- Solaris SPARC: Dropped legacy ATA support.  Dropped configure option
+  '--with-solaris-sparc-ata'.
+- Windows: IOCTL_STORAGE_PROTOCOL_COMMAND variant for NVMe self-tests.
+- Windows: Installer now defaults to 64-bit executables.
+- Windows: No longer prints bogus 'Local Time' if enhanced TZ syntax is used.
+- Windows: Workaround to keep backward compatibility with old versions
+  of Windows if some versions of MinGW-w64 are used.
 
 Date 2022-02-28
 Summary: smartmontools release 7.3
