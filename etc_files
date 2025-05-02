@@ -1,0 +1,5 @@
+/etc/:
+/etc/smartd_warning.d:
+smartd.conf
+smartd_warning.d
+smartd_warning.sh

@@ -1,5 +1,5 @@
 PKG_NAME := smartmontools
-URL = https://sourceforge.net/projects/smartmontools/files/smartmontools/7.4/smartmontools-7.4.tar.gz
+URL = https://github.com/smartmontools/smartmontools/archive/RELEASE_7_5/smartmontools-7.5.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common

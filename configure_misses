@@ -2,4 +2,3 @@ Configure miss: g++ option to accept C++17
 Configure miss: g++ option to enable C++11 features
 Configure miss: linux/compiler.h
 Configure miss: path of systemd EnvironmentFile
-Configure miss: whether this is a build from SVN
